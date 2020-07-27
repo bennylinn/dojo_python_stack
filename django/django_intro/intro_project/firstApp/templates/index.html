@@ -1,0 +1,18 @@
+<h1>Counter Page</h1>
+<!-- <form action='/users' method='post'>
+    {% csrf_token %}
+    Name: <input type='text' name='name'>
+    Email: <input type='text' name='email'>
+    Favourite Numbers: <input type="number" name='favNumber1'>
+    <input type="number" name='favNumber2'>
+    <input type="number" name='favNumber3'>
+    <button type='submit'>Create User</button>
+</form> -->
+
+<div>
+    <p>Counter:</p>
+    <p>{{ count }} times</p>
+</div>
+<a href="/delete">
+    <button>Reset Counter</button>
+</a>
