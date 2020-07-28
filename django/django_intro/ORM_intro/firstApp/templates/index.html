@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>All Movies</h1>
+    <div style="border: 2px solid green; width: 600px;">
+        <div style="display:inline-block;">
+            <ul>
+                <p>id</p>
+                {% for movie in all_the_movies %}
+                <li>{{ movie.id }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="display:inline-block;">
+            <ul>
+                <p>Name</p>
+                {% for movie in all_the_movies %}
+                <li>{{ movie.title }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="display:inline-block;">
+            <ul>
+                <p>Duration</p>
+                {% for movie in all_the_movies %}
+                <li>{{ movie.duration }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div style="display:inline-block;">
+            <ul>
+                <p>Rating</p>
+                {% for movie in all_the_movies %}
+                <li>{{ movie.rating }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div style="height: 0px; border: 2px solid black"></div>
+    <h1>Add a Movie!</h1>
+    <form action="/add" method="POST">
+        {% csrf_token %}
+        <label for="exampleFormControlInput1">Name:</label>
+        <input type="text" name="name">
+        <label for="exampleFormControlInput1">Duration:</label>
+        <input type="text" name="duration">
+        <label for="exampleFormControlInput1">Rating:</label>
+        <input type="number" name="rating">
+        <button type="submit">Add Movie</button>
+    </form>
+</body>
+</html>
