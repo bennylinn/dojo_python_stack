@@ -1,0 +1,53 @@
+.form{
+    padding: 15px;
+    width: 500px;
+    height: 500px;
+    display: inline-block;
+    vertical-align: top;
+    border: 2px solid black;
+}
+.header{
+    text-align: center;
+}
+.error{
+    color: red;
+}
+#button{
+    margin-top: 20px;
+}
+
+label {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100px;
+    line-height: 26px;
+    margin-top: 10px;
+}
+
+.column-view {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+}
+  
+input {
+    height: 20px;
+    flex: 0 0 100px;
+    margin-left: 10px;
+}
+
+.quote-container {
+    margin: 5px;
+    padding: 15px;
+    width: 400px;
+    height: 300px;
+    border: 2px solid black;
+}
+
+#largetextfield {
+    width: 200px;
+    height: 200px;
+}
+/* edit out index.html unused classes */

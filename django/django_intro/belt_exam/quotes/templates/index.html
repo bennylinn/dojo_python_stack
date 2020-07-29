@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <h1>Quote Dash</h1>
+    <div class="container">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form id="registration" class='form' action='/register' method='post'>
+            {% csrf_token %}
+            <h1>Register</h1>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">First Name:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name='first_name' value="{{ request.session.first_name }}">
+            </div>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Last Name:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name='last_name' value="{{ request.session.last_name }}">
+            </div>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Email:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name='email' value="{{ request.session.email }}">
+            </div>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Password:</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name='password'>
+            </div>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Confirm PW:</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name='confirm_password'>
+            </div>
+            <button type="submit" value='submit' id="button" class="btn btn-primary">Submit</button>
+        </form>
+        <form id="login" class='form' action='/login' method='post'>
+            {% csrf_token %}
+            <h1>Login</h1>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Email:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name='email' value="{{ request.session.email }}">
+            </div>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Password:</label>
+                <input type="password" class="form-control" id="exampleFormControlInput1" name='password'>
+            </div>
+            <button type="submit" value='submit' id="button" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

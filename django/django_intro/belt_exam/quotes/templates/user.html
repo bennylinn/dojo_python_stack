@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserPage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/quotes">Home</a>
+        <a href="/myaccount/{{ currentid }}">Edit My Account</a>
+        <form action="/logout" method="POST">
+            {% csrf_token %}
+            <button type="submit" value='logout' id="logout" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
+    <h1></h1>
+    <div class='column-view'>
+        <h2>{{ first_name }} {{ last_name }}'s Quotes</h2>
+        <tbody>
+            {% for quote in quotes %}
+            <div class="quote-container">
+                <tr>
+                    <th scope="row">{{ quote.entry }}</th>
+                </tr>
+            </div>
+            {% endfor %}
+        </tbody>
+    </div>
+</body>
+</html>

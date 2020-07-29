@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyAccount</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/quotes">Home</a>
+    </div>
+    <h1>Edit My Account</h1>
+    <form class='form' action='/update/{{ id }}' method='POST'>
+        {% csrf_token %}
+        <div class='rightSideDiv'>
+            <label for="exampleFormControlInput1">First Name:</label>
+            <input value="{{ first_name }}" type="text" class="form-control" id="exampleFormControlInput1" name='first_name' value="{{ request.session.first_name }}">
+        </div>
+        <div class='rightSideDiv'>
+            <label for="exampleFormControlInput1">Last Name:</label>
+            <input value="{{ last_name }}" type="text" class="form-control" id="exampleFormControlInput1" name='last_name' value="{{ request.session.last_name }}">
+        </div>
+        <div class='rightSideDiv'>
+            <label for="exampleFormControlInput1">Email:</label>
+            <input value="{{ email }}" type="text" class="form-control" id="exampleFormControlInput1" name='email' value="{{ request.session.email }}">
+        </div>
+        <button type="submit" value='submit' id="button" class="btn btn-primary">Update</button>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

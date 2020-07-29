@@ -15,8 +15,7 @@ Including another URLconf
 """
 
 from django.urls import path, include
-import wishes
 
 urlpatterns = [
-    path('', include('wishes.urls'))
+    path('', include('quotes.urls'))
 ]

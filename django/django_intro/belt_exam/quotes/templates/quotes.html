@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="/quotes">Home</a>
+        <a href="/myaccount/{{ currentid }}">Edit My Account</a>
+        <form action="/logout" method="POST">
+            {% csrf_token %}
+            <button type="submit" value='logout' id="logout" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
+    <h1>Welcome {{ name }}</h1>
+    <div class='column-view'>
+        <h2>Quotes</h2>
+        <tbody>
+            {% for quote in quotes %}
+            <div class="quote-container">
+                <tr>
+                    <th scope="row">{{ quote.entry }}</th>
+                    <p>Posted by </p>
+                    <a href="/user/{{ quote.user.id }}">
+                        {{ quote.user.first_name }} {{ quote.user.last_name }}
+                    </a>
+                    <p>{{ quote.likes.count }} people like this</p>
+                    <form action="/like" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name='quotee_id' value="{{ quote.id }}">
+                        <button type="submit" value='like' id="like" class="btn btn-primary">Like!</button>
+                    </form>
+                    {% if quote.user.id == currentid %}
+                    <form action='/delete' method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name='quote_id' value="{{ quote.id }}">
+                        <button type="submit" id="button" class="btn btn-primary">Delete</button>
+                    {% endif %}
+                </tr>
+            </div>
+            {% endfor %}
+        </tbody>
+    </div>
+    <div class='column-view'>
+        <form action='/create' method='POST'>
+            {% csrf_token %}
+            <h2>Add a Quote</h2>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Author</label>
+                <input type='text' name='author'>
+            </div>
+            <div class='rightSideDiv'>
+                <label for="exampleFormControlInput1">Quote</label>
+                <input type='text' id='largetextfield' name='quote'>
+            </div>
+            <button type="submit" id="button" class="btn btn-primary">Submit</button>
+        </form>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
